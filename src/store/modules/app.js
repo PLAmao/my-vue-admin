@@ -2,7 +2,7 @@
 
 const app = {
   state: {
-    asidebarOpen: true
+    asidebarOpen: false
   },
   mutations: {
     SET_SLIDEBAR_OPEN(state) {

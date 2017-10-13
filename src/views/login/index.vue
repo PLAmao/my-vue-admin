@@ -3,13 +3,13 @@
     <el-form ref="form" class="login-form" :rules="rules" :model="formData">
       <h3 class="tc f24 wh mb20">系统登录</h3>
       <el-form-item class="rel" prop="username">
-        <icon-svg icon-class="yonghuming" class="svg-icon"/>
+        <icon-font name="yonghu" class="svg-icon"/>
         <el-input v-model="formData.username" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
-        <icon-svg icon-class="mima"  class="svg-icon"/>
+        <icon-font name="quanxian"  class="svg-icon"/>
         <el-input v-model="formData.password" :type="pwdType" placeholder="密码"></el-input>
-        <icon-svg icon-class="yanjing"  class="svg-icon svg-icon-after" @click.native="showPwd"/>
+        <icon-font name="chakan"  class="svg-icon svg-icon-after" @click.native="showPwd"/>
       </el-form-item>
       <el-form-item >
         <el-button class="pct100" :loading="loading" type="primary" @click="submitForm">登录</el-button>
@@ -105,7 +105,7 @@ $bg: #2d3a4b;
     left: 10px;
     z-index: 1;
     top: 50%;
-    margin-top: -8px;
+    transform: translateY(-50%);
   }
   .svg-icon-after {
     left: auto;

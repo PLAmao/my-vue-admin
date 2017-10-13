@@ -3,6 +3,7 @@
     <asidebar class="asidebar-container"></asidebar>
     <div class="main-container">
       <navbar></navbar>
+      <app-main></app-main>
     </div>
   </div>
 </template>
@@ -10,6 +11,7 @@
 <script>
 import Asidebar from './asidebar'
 import Navbar from './navbar'
+import AppMain from './appMain'
 import { mapGetters } from 'vuex'
 export default {
   computed: {
@@ -17,7 +19,8 @@ export default {
   },
   components: {
     Asidebar,
-    Navbar
+    Navbar,
+    AppMain
   }
 }
 </script>
