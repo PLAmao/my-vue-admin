@@ -2,7 +2,7 @@
 
 const app = {
   state: {
-    asidebarOpen: false
+    asidebarOpen: true  // 侧边栏是否展开
   },
   mutations: {
     SET_SLIDEBAR_OPEN(state) {

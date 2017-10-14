@@ -57,7 +57,8 @@ export const constantRouterMap = [
           { path: 'AccountLog', redirect: 'AccountLog/index', hidden: true },
           { path: 'AccountLog/index', component: _import('accountLog/index'), name: '导入日志管理' }
         ]
-      }
+      },
+      { path: 'AdvUsers/index', component: _import('advUsers/index'), name: '广告主账号管理' }
     ]
   }
 ]

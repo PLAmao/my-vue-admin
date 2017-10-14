@@ -1,0 +1,90 @@
+// 主色1，适用于全局，查询按钮/表示成本。
+$color-primary1: #00c2b2;
+// 主色2，适用于高亮文字链/次级线形按钮等。
+$color-primary2: #00b8a8;
+
+// 消息提示。表示分配地区标签/毛利率/华东等。
+$color-info: #26acff;
+// 成功提示。添加按钮，另外表示垫款/华南地区。
+$color-success: #79cc3d;
+// 警告提示。适用于数据上传类按钮/分配销售。
+$color-warning: #ffbb00;
+// 错误提示。终止状态。
+$color-error: #ff5959;
+// 表示分配助理/审核类按钮，以及毛利。
+$color-accent: #9f75ff;
+// 分配媒介按钮，华北地区。
+$color-danger: #fa5089;
+
+// 全局底色，表格表头/斑马行底色。
+$color-bg: #f3f5f7;
+// 不可用按钮色。
+$color-disabled: #eceff2;
+// 布局模块描边，分割线。
+$color-line: #e4e9ed;
+// 输入框元素描边。
+$color-outline: #dae0e6;
+// 输入框Hover色，icon色。
+$color-hover: #b3bfcc;
+// 辅助性文字，内置文字。
+$color-pl: #8da0b3;
+// ICON色。
+$color-icon: #7a90a6;
+// 14号加粗文本色，一般用于label
+$color-label: #53708c;
+// 20号加粗大标题。
+$color-title: #416180;
+// 左侧导航底色。
+$color-nav: #273a4b;
+// 左侧导航子菜单底色。
+$color-submenu: #1A2633;
+// 辅助性文字。
+$color-assist: #999999;
+// 适用正文文字。
+$color-main: #666666;
+
+$color-white: #ffffff;
+
+$border-color: $color-line;
+
+// 箭头
+$arrow-width: 8px;
+$arrow-outer-color: $border-color;
+
+$font-base: 14px;
+
+$input-height-base: 36px;
+$input-height-large: 40px;
+$input-height-small: 28px;
+$input-font-color: $color-main;
+$input-border-color: $color-outline;
+$input-placeholder-color: $color-pl;
+$input-focus-border: $color-primary2;
+$input-hover-border: $color-hover;
+$input-diabeled-color: $color-disabled;
+
+$radio-icon-color: $color-hover;
+$radio-icon-select: $color-primary2;
+
+$form-group-margin-bottom: 25px;
+
+// Modals
+
+// Padding applied to the modal body
+$modal-inner-padding:         15px !default;
+
+$modal-title-padding:         15px !default;
+$modal-title-line-height:     40px !default;
+
+$modal-content-bg:                             #fff !default;
+$modal-content-border-color:                   rgba(0,0,0,.2) !default;
+
+$modal-backdrop-bg:           #000 !default;
+$modal-backdrop-opacity:      .5 !default;
+$modal-header-border-color:   #e5e5e5 !default;
+$modal-footer-border-color:   $border-color !default;
+
+$modal-lg:                    900px !default;
+$modal-md:                    600px !default;
+$modal-sm:                    300px !default;
+
