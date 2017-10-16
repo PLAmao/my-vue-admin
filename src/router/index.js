@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '../views/layout'
+import { routeMode } from '../utils/env'
 // 开发环境不使用异步加载模块提高热加载速度，生产环境使用
 const _import = require('./_import_' + process.env.NODE_ENV)
 
@@ -57,8 +58,7 @@ export const constantRouterMap = [
           { path: 'AccountLog', redirect: 'AccountLog/index', hidden: true },
           { path: 'AccountLog/index', component: _import('accountLog/index'), name: '导入日志管理' }
         ]
-      },
-      { path: 'AdvUsers/index', component: _import('advUsers/index'), name: '广告主账号管理' }
+      }
     ]
   }
 ]
@@ -98,5 +98,6 @@ export const asyncRouterMap = [
 ]
 
 export default new Router({
+  mode: routeMode,
   routes: constantRouterMap
 })

@@ -39,6 +39,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  background-color: $color-bg;
+  color: $color-main;
 }
 
 label {
@@ -53,4 +55,9 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+}
+
+html,
+body {
+  min-height: 100vh;
 }

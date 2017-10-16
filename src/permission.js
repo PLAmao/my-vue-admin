@@ -1,28 +1,29 @@
 import router from './router'
-import store from './store'
+// import store from './store'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { getToken } from './utils/auth'
+import Cookies from 'js-cookie'
 
 const whiteList = ['/login'] // 不重定向的白名单
 router.beforeEach((to, from, next) => {
   NProgress.start() // 开启nprogress
-
-  if (getToken()) {
-    if (to.path === '/login') { // 登录过就不能进入登录页，进入首页
+  // 通过cookie判断用户是否登录
+  if (Cookies.get('Account')) {
+    if (to.path === '/login') { // 登录过就不能再进入登录页，进入首页
       next({ path: '/' })
       NProgress.done()
     } else {
-      if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
-        store.dispatch('getUserInfo', getToken()).then(res => {
-          console.log(res)
-          next()
-        }).catch(() => {
-          next({ path: '/login' })
-        })
-      } else {
-        next()
-      }
+      // if (store.getters.roles.length === 0) { // 判断当前用户是否已拉取完user_info信息
+      //   store.dispatch('getUserInfo', getToken()).then(res => {
+      //     console.log(res)
+      //     next()
+      //   }).catch(() => {
+      //     next({ path: '/login' })
+      //   })
+      // } else {
+      //   next()
+      // }
+      next()
     }
   } else {
     if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
@@ -35,5 +36,5 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done()
+  NProgress.done()  // 关闭nprogress
 })

@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form ref="form" class="login-form" :rules="rules" :model="formData">
-      <h3 class="tc f24 wh mb20">系统登录</h3>
+      <h1 class="tc f18 mb20">SIG - 社媒广告管理系统</h1>
       <el-form-item class="rel" prop="username">
         <icon-font name="yonghu" class="svg-icon"/>
         <el-input v-model="formData.username" placeholder="用户名"></el-input>
@@ -11,7 +11,22 @@
         <el-input v-model="formData.password" :type="pwdType" placeholder="密码"></el-input>
         <icon-font name="chakan"  class="svg-icon svg-icon-after" @click.native="showPwd"/>
       </el-form-item>
-      <el-form-item >
+      <el-form-item prop="verify_code">
+        <div class="flex">
+          <el-input v-model="formData.verify_code"  placeholder="验证码" :maxlength="4"></el-input>
+          <img class="code-img" ref="codeImg" :src="codeImgUrl" alt="" @click="changeImg">
+        </div>
+      </el-form-item>
+      <el-form-item>
+        <el-checkbox-group v-model="checkList">
+          <el-checkbox label="复选框 A"></el-checkbox>
+          <el-checkbox label="复选框 B"></el-checkbox>
+          <el-checkbox label="复选框 C"></el-checkbox>
+          <el-checkbox label="禁用" disabled></el-checkbox>
+          <el-checkbox label="选中且禁用" disabled></el-checkbox>
+        </el-checkbox-group>
+      </el-form-item>
+      <el-form-item>
         <el-button class="pct100" :loading="loading" type="primary" @click="submitForm">登录</el-button>
       </el-form-item>
     </el-form>
@@ -19,53 +34,46 @@
 </template>
 
 <script>
-import { isvalidUsername } from '@/utils/validate'
-import { mapActions } from 'vuex'
+import { codeImgUrl, login } from '@/api/login/index'
 
 export default {
   name: 'login',
   data() {
-    const validataUsername = (rule, value, callback) => {
-      if (!isvalidUsername(value)) {
-        callback(new Error('请输入正确的用户名'))
-      } else {
-        callback()
-      }
-    }
-    const validatePassword = (rule, value, callback) => {
-      if (value.length < 6) {
-        callback(new Error('密码不小于6位'))
-      } else {
-        callback()
-      }
-    }
     return {
       formData: {
-        username: 'admin',
-        password: '111111'
+        username: '',
+        password: '',
+        verify_code: ''
       },
+      codeImgUrl,
       pwdType: 'password',
       rules: {
-        username: [{ required: true, trigger: 'blur', validator: validataUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [{ required: true, trigger: 'blur', message: '用户名不能为空' }],
+        password: [{ required: true, trigger: 'blur', message: '密码不能为空' }],
+        verify_code: [{ required: true, trigger: 'blur', message: '验证码不能为空' }]
       },
       loading: false
     }
   },
   methods: {
-    ...mapActions(['login']),
     submitForm() {
       this.$refs['form'].validate((valid) => {
         if (valid) {
           this.loading = true
-          this.login(this.formData).then(data => {
-            this.$router.push({ path: '/' })
+          this.$http(login(this.formData), res => {
+            // 登录成功，跳转到主页
             this.loading = false
-          }).catch(() => {
+            this.$message({
+              message: res.msg,
+              type: 'success'
+            })
+            this.$router.push({ path: '/index' })
+          }, () => {
+            // 登录失败，更换验证码
             this.loading = false
+            this.changeImg()
           })
         } else {
-          console.log('error submit!!')
           return false
         }
       })
@@ -77,28 +85,32 @@ export default {
       } else {
         this.pwdType = 'password'
       }
+    },
+    // 改变验证码
+    changeImg() {
+      this.$refs.codeImg.src = `${codeImgUrl}?v=${+new Date()}`
     }
   }
 }
 </script>
 
 <style lang="scss">
-$bg: #2d3a4b;
-
+@import '../../assets/styles/variables.scss';
 .login-container {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: $bg;
   input {
     padding: 0 35px;
   }
   .login-form {
-    padding: 35px 35px 15px 35px;
-    width: 400px;
+    background-color: #fff;
+    padding: 48px 24px;
+    width: 368px;
     margin: 120px auto;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1), 0 -1px 0 rgba(0,0,0,.02);
   }
   .svg-icon {
     position: absolute;
@@ -111,6 +123,10 @@ $bg: #2d3a4b;
     left: auto;
     right: 10px;
     cursor: pointer;
+  }
+  .code-img {
+    height: 36px;
+    margin-left: 20px;
   }
 }
 </style>

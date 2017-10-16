@@ -1,68 +1,35 @@
-import { login, getUserInfo } from '@/api/login'
-// import { getToken, setToken, removeToken } from '@/utils/auth'
-import { getToken, setToken } from '@/utils/auth'
+import { getUserInfo } from '../../api/login'
 
 const user = {
   state: {
-    user: '',
-    status: '',
-    code: '',
-    token: getToken(),
     name: '',
-    avatar: '',
-    introduction: '',
-    roles: [],
-    setting: {
-      articlePlatform: []
-    }
+    relation_account: '',
+    role: ''
   },
   mutations: {
-    SET_CODE(state, code) {
-      state.code = code
-    },
-    SET_TOKEN(state, token) {
-      state.token = token
-    },
-    SET_INTRODUCTION(state, introduction) {
-      state.introduction = introduction
-    },
-    SET_SETTING(state, setting) {
-      state.setting = setting
-    },
-    SET_STATUS(state, status) {
-      state.status = status
-    },
     SET_NAME(state, name) {
       state.name = name
     },
-    SET_AVATAR(state, avatar) {
-      state.avatar = avatar
+    SET_RELATION_ACCOUNT(state, relation_account) {
+      state.relation_account = relation_account
     },
-    SET_ROLES(state, roles) {
-      state.roles = roles
+    SET_ROLE(state, role) {
+      state.role = role
     }
   },
   actions: {
-    // 登录
-    async login({ commit }, userInfo) {
+    async GetUserInfo({ commit, state }) {
       try {
-        const data = await login(userInfo)
-        setToken(data.token)
-        commit('SET_TOKEN', data.token)
-        return Promise.resolve()
-      } catch (error) {
-        return Promise.reject(error)
-      }
-    },
-    // 获取用户信息
-    async getUserInfo({ commit }, token) {
-      try {
-        const data = await getUserInfo(token)
-        commit('SET_ROLES', data.role)
-        commit('SET_NAME', data.name)
-        commit('SET_AVATAR', data.avatar)
-        commit('SET_INTRODUCTION', data.introduction)
-        return Promise.resolve(data)
+        const data = await getUserInfo()
+        if (data && data.status === 1) {
+          const loginInfo = data.data.login_info
+          commit('SET_NAME', loginInfo.name)
+          commit('SET_RELATION_ACCOUNT', loginInfo.relation_account)
+          commit('SET_ROLE', loginInfo.role)
+          return Promise.resolve(data)
+        } else {
+          return Promise.reject('获取用户信息失败')
+        }
       } catch (error) {
         return Promise.reject(error)
       }
