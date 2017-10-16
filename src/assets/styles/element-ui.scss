@@ -1,0 +1,59 @@
+$color-disabled-text: rgba(83,112,140,.5);
+/**
+ * 修改表单的样式
+ */
+// 输入框
+.el-input__inner, .el-textarea__inner {
+  border-color: $color-outline;
+  color: $color-main;
+  &:hover {
+    border-color: $color-hover;
+  }
+  &:focus {
+    border-color: $color-primary2;
+  }
+}
+.el-form-item.is-error .el-input__inner, .el-form-item.is-error .el-textarea__inner, .el-form-item__error {
+  border-color: $color-error;
+}
+.el-input.is-disabled .el-input__inner,
+.el-textarea.is-disabled .el-textarea__inner {
+  background-color: $color-disabled;
+  border-color: $color-outline;
+  color: $color-hover;
+
+}
+
+// 单选框
+.el-radio__inner {
+  border-color: $color-hover;
+  width: 16px;
+  height: 16px;
+  &:hover {
+    border-color: $color-primary2;
+  }
+}
+.el-radio__input.is-checked .el-radio__inner {
+  border-color: $color-primary2;
+  background: #fff;
+}
+.el-radio__inner::after {
+  width: 8px;
+  height: 8px;
+  background-color: $color-primary2;
+}
+.el-radio {
+  color: $color-label;
+  font-weight: 400;
+}
+.el-radio__input.is-disabled .el-radio__inner,
+.el-radio__input.is-disabled.is-checked .el-radio__inner {
+  background-color: $color-disabled;
+  border-color: $color-hover;
+}
+.el-radio__input.is-disabled.is-checked .el-radio__inner::after {
+  background-color: $color-hover;
+}
+.el-radio__input.is-disabled+.el-radio__label {
+  color: $color-disabled-text;
+}
