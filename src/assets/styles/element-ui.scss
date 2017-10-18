@@ -57,3 +57,94 @@ $color-disabled-text: rgba(83,112,140,.5);
 .el-radio__input.is-disabled+.el-radio__label {
   color: $color-disabled-text;
 }
+.el-radio__label {
+  padding-left: 7px;
+}
+
+// 多选框
+.el-checkbox__inner {
+  border-color: $color-hover;
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+  &:hover {
+    border-color: $color-primary2;
+  }
+}
+.el-checkbox__input.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-indeterminate .el-checkbox__inner {
+  background-color: $color-primary2;
+  border-color: $color-primary2;
+}
+.el-checkbox__inner::after {
+  width: 3px;
+  height: 7px;
+}
+.el-checkbox {
+  color: $color-label;
+  font-weight: 400;
+}
+.el-checkbox__label {
+  padding-left: 7px;
+}
+.el-checkbox__input.is-disabled .el-checkbox__inner {
+  background-color: $color-disabled;
+}
+.el-checkbox__input.is-disabled+.el-checkbox__label {
+  color: $color-disabled-text;
+}
+.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner,
+.el-checkbox__input.is-disabled.is-indeterminate .el-checkbox__inner {
+  background-color: $color-disabled;
+}
+.el-checkbox__input.is-disabled.is-checked .el-checkbox__inner::after,
+.el-checkbox__input.is-disabled.is-indeterminate .el-checkbox__inner::before {
+  border-color: $color-hover;
+}
+
+// 开关
+.el-switch__core {
+  border-color: $color-hover;
+  background-color: $color-hover;
+}
+.el-switch.is-checked .el-switch__core {
+  border-color: $color-primary1;
+  background-color: $color-primary1;
+}
+.el-switch.is-disabled .el-switch__core {
+  border-color: $color-disabled!important;
+  background: $color-disabled!important;
+}
+.el-switch__core {
+  width: 38px!important;
+  height: 20px;
+}
+.el-switch__core .el-switch__button {
+  transform: translate(1px, 1px)!important;
+}
+.el-switch.is-checked .el-switch__core .el-switch__button{
+  transform: translate(19px, 1px)!important;
+}
+
+// 下拉选择
+.el-select .el-input__inner:focus {
+  border-color: $color-primary2;
+}
+.el-select-dropdown__item.selected,
+.el-select-dropdown__item.selected.hover {
+  background-color: $color-primary2;
+}
+.el-tag--primary {
+  background-color: $color-bg;
+  color: $color-main;
+  border-color: $color-outline;
+}
+.el-tag .el-icon-close {
+  color: $color-hover;
+}
+.el-select-dropdown.is-multiple .el-select-dropdown__item.selected {
+  color: $color-primary2;
+}
+.el-tag--primary .el-tag__close:hover {
+  background-color: $color-error;
+}

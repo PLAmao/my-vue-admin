@@ -4,11 +4,11 @@
       <h1 class="tc f18 mb20">SIG - 社媒广告管理系统</h1>
       <el-form-item class="rel" prop="username">
         <icon-font name="yonghu" class="svg-icon"/>
-        <el-input v-model="formData.username" placeholder="用户名"></el-input>
+        <el-input v-model="formData.username" auto-complete="on" placeholder="用户名"></el-input>
       </el-form-item>
       <el-form-item prop="password">
         <icon-font name="quanxian"  class="svg-icon"/>
-        <el-input v-model="formData.password" :type="pwdType" placeholder="密码"></el-input>
+        <el-input v-model="formData.password" :type="pwdType" placeholder="密码" auto-complete="on"></el-input>
         <icon-font name="chakan"  class="svg-icon svg-icon-after" @click.native="showPwd"/>
       </el-form-item>
       <el-form-item prop="verify_code">
@@ -16,15 +16,6 @@
           <el-input v-model="formData.verify_code"  placeholder="验证码" :maxlength="4"></el-input>
           <img class="code-img" ref="codeImg" :src="codeImgUrl" alt="" @click="changeImg">
         </div>
-      </el-form-item>
-      <el-form-item>
-        <el-checkbox-group v-model="checkList">
-          <el-checkbox label="复选框 A"></el-checkbox>
-          <el-checkbox label="复选框 B"></el-checkbox>
-          <el-checkbox label="复选框 C"></el-checkbox>
-          <el-checkbox label="禁用" disabled></el-checkbox>
-          <el-checkbox label="选中且禁用" disabled></el-checkbox>
-        </el-checkbox-group>
       </el-form-item>
       <el-form-item>
         <el-button class="pct100" :loading="loading" type="primary" @click="submitForm">登录</el-button>

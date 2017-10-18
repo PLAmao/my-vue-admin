@@ -7,6 +7,7 @@
 export default {
   name: 'icon-font',
   props: {
+    // 图标字体的类名的后半部分，如icon-shang，输入shang即可
     name: {
       type: String,
       required: true
